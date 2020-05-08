@@ -1,109 +1,35 @@
-// Source : https://oj.leetcode.com/problems/substring-with-concatenation-of-all-words/
-// Author : Hao Chen
-// Date   : 2014-08-24
-
-/********************************************************************************** 
-* 
-* You are given a string, S, and a list of words, L, that are all of the same length. 
-* Find all starting indices of substring(s) in S that is a concatenation of each word 
-* in L exactly once and without any intervening characters.
-* 
-* For example, given:
-* S: "barfoothefoobarman"
-* L: ["foo", "bar"]
-* 
-* You should return the indices: [0,9].
-* (order does not matter).
-* 
-*               
-**********************************************************************************/
-
-#include <iostream>
-#include <vector>
-#include <string>
-#include <map>
-using namespace std;
-
-vector<int> findSubstring(string S, vector<string> &L) {
-
-    vector<int> result;
-    if ( S.size()<=0 || L.size() <=0 ){
-        return result;
-    }
+class Solution {
+public:
+  vector<int> findSubstring(string s, vector<string>& words) {
+    if (words.empty() || s.empty()) return {};
     
-    int n = S.size(), m = L.size(), l = L[0].size();
-
-    //put all of words into a map    
-    map<string, int> expected;
-    for(int i=0; i<m; i++){
-        if (expected.find(L[i])!=expected.end()){
-            expected[L[i]]++;
-        }else{
-            expected[L[i]]=1;
-        }
-    }
-
-    for (int i=0; i<l; i++){
-        map<string, int> actual;
-        int count = 0; //total count
-        int winLeft = i;
-        for (int j=i; j<=n-l; j+=l){
-            string word = S.substr(j, l);
-            //if not found, then restart from j+1;
-            if (expected.find(word) == expected.end() ) {
-                actual.clear();
-                count=0;
-                winLeft = j + l;
-                continue;
-            }
-            count++;
-            //count the number of "word"
-            if (actual.find(word) == actual.end() ) {
-                actual[word] = 1;
-            }else{
-                actual[word]++;
-            }
-            // If there is more appearance of "word" than expected
-            if (actual[word] > expected[word]){
-                string tmp;
-                do {
-                    tmp = S.substr( winLeft, l );
-                    count--;
-                    actual[tmp]--;
-                    winLeft += l; 
-                } while(tmp!=word);
-            }
-
-            // if total count equals L's size, find one result
-            if ( count == m ){
-                result.push_back(winLeft);
-                string tmp = S.substr( winLeft, l );
-                actual[tmp]--;
-                winLeft += l;
-                count--;
-            }
-            
-        }
-    }
-
-    return result;
-}
-
-
-int main(int argc, char**argv)
-{
-    string s = "barfoobarfoothefoobarman";
-    vector<string> l;
-    l.push_back("foo");
-    l.push_back("bar");
-    l.push_back("foo");
+    const int n = words.size();
+    const int l = words[0].length();
     
-    vector<int> indics = findSubstring(s, l);
+    if (n * l > s.length()) return {};
     
-    for(int i=0; i<indics.size(); i++){
-        cout << indics[i] << " ";
+    std::string_view ss(s);
+    
+    std::unordered_map<std::string_view, int> expected;
+    
+    for (const string& word : words)
+      ++expected[string_view(word)];
+ 
+    vector<int> ans;
+    
+    for (int i = 0; i <= ss.length() - n * l; ++i) {      
+      std::unordered_map<std::string_view, int> seen;
+      int count = 0;
+      for (int j = 0; j < n; ++j) {
+        std::string_view w = ss.substr(i + j * l, l);
+        auto it = expected.find(w);
+        if (it == expected.end()) break;
+        if (++seen[w] > it->second) break;
+        ++count;
+      }
+      if (count == n) 
+        ans.push_back(i);
     }
-    cout << endl;
-
-    return 0;
-}
+    return ans;
+  }
+};
