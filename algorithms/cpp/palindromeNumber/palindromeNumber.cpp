@@ -76,13 +76,13 @@ private:
 
 
 
-int main()
-{
-    Solution s;
-    printf("%d is %d\n", 0, s.isPalindrome(0) );
-    printf("%d is %d\n", -101, s.isPalindrome(-101) );
-    printf("%d is %d\n", 1001, s.isPalindrome(1001) );
-    printf("%d is %d\n", 1234321, s.isPalindrome(1234321) );
-    printf("%d is %d\n", 2147447412, s.isPalindrome(2147447412) );
-    printf("%d is %d\n", 2142, s.isPalindrome(2142) );
-}
+// int main()
+// {
+//     Solution s;
+//     printf("%d is %d\n", 0, s.isPalindrome(0) );
+//     printf("%d is %d\n", -101, s.isPalindrome(-101) );
+//     printf("%d is %d\n", 1001, s.isPalindrome(1001) );
+//     printf("%d is %d\n", 1234321, s.isPalindrome(1234321) );
+//     printf("%d is %d\n", 2147447412, s.isPalindrome(2147447412) );
+//     printf("%d is %d\n", 2142, s.isPalindrome(2142) );
+// }
