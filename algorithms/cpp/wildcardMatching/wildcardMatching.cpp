@@ -1,104 +1,66 @@
-// Source : https://oj.leetcode.com/problems/wildcard-matching/
-// Author : Hao Chen
-// Date   : 2014-07-19
-
-/********************************************************************************** 
-* 
-* Implement wildcard pattern matching with support for '?' and '*'.
-* 
-* '?' Matches any single character.
-* '*' Matches any sequence of characters (including the empty sequence).
-* 
-* The matching should cover the entire input string (not partial).
-* 
-* The function prototype should be:
-* bool isMatch(const char *s, const char *p)
-* 
-* Some examples:
-* isMatch("aa","a") → false
-* isMatch("aa","aa") → true
-* isMatch("aaa","aa") → false
-* isMatch("aa", "*") → true
-* isMatch("aa", "a*") → true
-* isMatch("ab", "?*") → true
-* isMatch("aab", "c*a*b") → false
-* 
-*               
-**********************************************************************************/
-
-#include <iostream>
-#include <string>
-using namespace std;
-
-
-bool isMatch(const char *s, const char *p) {
-
-    const char *last_s = NULL; 
-    const char *last_p = NULL;
-    while( *s != '\0' ){
-        if (*p=='*'){
-            //skip the "*", and mark a flag
-            p++;
-            //edge case
-            if (*p=='\0') return true;
-            //use last_s and last_p to store where the "*" match starts.
-            last_s = s;
-            last_p = p;
-        }else if (*p=='?' || *s == *p){
-            s++; p++;
-        }else if (last_s != NULL){ // check "last_s" to know whether meet "*" before
-            // if meet "*" previously, and the *s != *p
-            // reset the p, using '*' to match this situation
-            p = last_p;
-            s = ++last_s; 
-        }else{
-            // *p is not wildcard char, 
-            // doesn't match *s, 
-            // there are no '*' wildcard matched before
-            return false;
+class Solution {
+public:
+    bool isMatch(string s, string p) {
+        int i = 0, j = 0, iStar = -1, jStar = -1, m = s.size(), n = p.size();
+        while (i < m) {
+            if (j < n && (s[i] == p[j] || p[j] == '?')) {
+                ++i; ++j;
+            } else if (j < n && p[j] == '*') {
+                iStar = i;
+                jStar = j++;
+            } else if (iStar >= 0) {
+                i = ++iStar;
+                j = jStar + 1;
+            } else return false;
         }
+        while (j < n && p[j] == '*') ++j;
+        return j == n;
     }
-    //edge case: "s" is done, but "p" still have chars.
-    while (*p == '*') p++;
-    return *p == '\0';
-}
+};
 
+// class Solution {
+// public:
+//     bool isMatch(string s, string p) {
+//         int m = s.size(), n = p.size();
+//         vector<vector<bool>> dp(m + 1, vector<bool>(n + 1, false));
+//         dp[0][0] = true;
+//         for (int i = 1; i <= n; ++i) {
+//             if (p[i - 1] == '*') dp[0][i] = dp[0][i - 1];
+//         }
+//         for (int i = 1; i <= m; ++i) {
+//             for (int j = 1; j <= n; ++j) {
+//                 if (p[j - 1] == '*') {
+//                     dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+//                 } else {
+//                     dp[i][j] = (s[i - 1] == p[j - 1] || p[j - 1] == '?') && dp[i - 1][j - 1];
+//                 }
+//             }
+//         }
+//         return dp[m][n];
+//     }
+// };
 
-int main(int argc, char** argv)
-{
-    const char *s = "aab";
-    const char *p = "a*a*b";
-    cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-
-    s = "abbb";
-    p = "a*b";
-    cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-
-    s = "abb";
-    p = "a*bb";
-    cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-
-    s = "abddbbb";
-    p = "a*d*b";
-    cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-
-    s = "abdb";
-    p = "a**";
-    cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-
-    s = "a";
-    p = "a**";
-    cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-
-    /* thanks @jakwings (GitHub) find this problem */
-    s = "*aa"; // <-- it is not a pattern, it just a string where '*' is not a wildcard
-    p = "*a";
-    cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-
-    if (argc>2){
-        s = argv[1];
-        p = argv[2];
-        cout << s << ", " << p << " : " << isMatch(s, p) << endl;
-    }
-    return 0;
-}
+// class Solution {
+// public:
+//     bool isMatch(string s, string p) {
+//         return helper(s, p, 0, 0) > 1;
+//     }
+//     int helper(string& s, string& p, int i, int j) {
+//         if (i == s.size() && j == p.size()) return 2;
+//         if (i == s.size() && p[j] != '*') return 0;
+//         if (j == p.size()) return 1;
+//         if (s[i] == p[j] || p[j] == '?') {
+//             return helper(s, p, i + 1, j + 1);
+//         }
+//         if (p[j] == '*') {
+//             if (j + 1 < p.size() && p[j + 1] == '*') {
+//                 return helper(s, p, i, j + 1);
+//             }
+//             for (int k = 0; k <= (int)s.size() - i; ++k) {
+//                 int res = helper(s, p, i + k, j + 1);
+//                 if (res == 0 || res == 2) return res;
+//             }
+//         }
+//         return 1;
+//     }
+// };
