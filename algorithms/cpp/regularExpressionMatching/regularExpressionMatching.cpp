@@ -1,71 +1,32 @@
-// Source : https://oj.leetcode.com/problems/regular-expression-matching/
-// Author : Hao Chen
-// Date   : 2014-08-24
-
-/********************************************************************************** 
-* 
-* Implement regular expression matching with support for '.' and '*'.
-* 
-* '.' Matches any single character.
-* '*' Matches zero or more of the preceding element.
-* 
-* The matching should cover the entire input string (not partial).
-* 
-* The function prototype should be:
-* bool isMatch(const char *s, const char *p)
-* 
-* Some examples:
-* isMatch("aa","a") → false
-* isMatch("aa","aa") → true
-* isMatch("aaa","aa") → false
-* isMatch("aa", "a*") → true
-* isMatch("aa", ".*") → true
-* isMatch("ab", ".*") → true
-* isMatch("aab", "c*a*b") → true
-* 
-*               
-**********************************************************************************/
-
-#include <stdio.h>
-#include <string.h>
-#include <iostream>
-
-using namespace std;
-
-
-bool isMatch(const char *s, const char *p) {
-
-    if (*p=='\0') {
-        return *s == '\0';
+// Author: Huahua, 14 ms
+class Solution {
+public:
+  bool isMatch(string s, string p) {
+    return isMatch(s.c_str(), p.c_str());
+  }
+private:
+  bool isMatch(const char* s, const char* p) {
+    if (*p == '\0') return *s == '\0';
+        
+    // normal case, e.g. 'a.b','aaa', 'a'
+    if (p[1] != '*' || p[1] == '\0') {
+      // no char to match
+      if (*s == '\0') return false;
+ 
+      if (*s == *p || *p == '.')
+        return isMatch(s + 1, p + 1);
+      else
+        return false;
     }
-    //p's length 1 is special case 
-    if (*(p+1) == '\0' || *(p+1) !='*' ) {
-        if (*s=='\0' || ( *p !='.' && *s != *p )) {
-            return false;
-        }
-        return isMatch(s+1, p+1);
+    else {
+      int i = -1;
+      while (i == -1 || s[i] == p[0] || p[0] == '.') {
+          if (isMatch(s + i + 1, p + 2)) return true;
+          if (s[++i] == '\0') break;
+      }
+      return false;
     }
-    int len = strlen(s);
-    int i = -1;
-    while (i < len && (i <0 || *p=='.' || *p==*(s+i)) ){
-        if (isMatch(s+i+1, p+2)) {
-            return true;
-        }
-        i++;
-    }
+    
     return false;
-}
-
-
-int main(int argc, char** argv)
-{
-    const char* s = "aaa";
-    const char* p = "a.*";
-
-    if (argc>2) {
-        s = argv[1];
-        p = argv[2];
-    }
-
-    cout << s << ", " << p << " : " << isMatch(s,p) << endl;
-}
+  }
+};
