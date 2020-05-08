@@ -33,7 +33,7 @@ LeetCode
 |971|[Flip Binary Tree To Match Preorder Traversal](https://leetcode.com/problems/flip-binary-tree-to-match-preorder-traversal/) | [C++](./algorithms/cpp/FlipBinaryTreeToMatchPreorderTraversal/flipMatchVoyage.cpp), [Python](./algorithms/python/FlipBinaryTreeToMatchPreorderTraversal/flipMatchVoyage.py)|Medium|
 |969|[Pancake Sorting](https://leetcode.com/problems/pancake-sorting/) |[C++](./algorithms/cpp/PancakeSorting/pancakeSort.cpp),  [Python](./algorithms/python/PancakeSorting/pancakeSort.py)|Medium|
 |961|[N-Repeated element in size 2N Array](https://leetcode.com/problems/n-repeated-element-in-size-2n-array/) | [C++](./algorithms/cpp/nRepeatedElementInSize2NArray/N-Repeated-Element-in-Size-2N-Array.cpp)|Easy|
-|958|[Check Completeness of a Binary Tree](https://leetcode.com/problems/check-completeness-of-a-binary-tree/) | [Python](./algorithms/python/CheckCompletenessOfABinaryTree/isCompleteTree.py)|Medium|
+|958|[Check Completeness of a Binary Tree](https://leetcode.com/problems/check-completeness-of-a-binary-tree/) | [C++](./algorithms/cpp/CheckCompletenessOfABinaryTree/isCompleteTree.cpp),  [Python](./algorithms/python/CheckCompletenessOfABinaryTree/isCompleteTree.py)|Medium|
 |951|[Flip Equivalent Binary Trees](https://leetcode.com/problems/flip-equivalent-binary-trees/) | [Python](./algorithms/python/FlipEquivalentBinaryTrees/flipEquiv.py)|Medium|
 |950|[Reveal Cards In Increasing Order](https://leetcode.com/problems/reveal-cards-in-increasing-order/) | [Python](./algorithms/python/RevealCardsInIncreasingOrder/deckRevealedIncreasing.py)|Medium|
 |941|[Valid Mountain Array](https://leetcode.com/problems/valid-mountain-array/) | [Python](./algorithms/python/ValidMountainArray/validMountainArray.py)|Easy|
