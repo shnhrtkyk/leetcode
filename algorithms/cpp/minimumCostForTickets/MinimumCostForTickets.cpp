@@ -1,7 +1,3 @@
-// Source : https://leetcode.com/problems/minimum-cost-for-tickets/
-// Author : Hao Chen
-// Date   : 2019-01-29
-
 /***************************************************************************************************** 
  *
  * In a country popular for train travel, you have planned some train travelling one year in advance.  
@@ -51,49 +47,21 @@
  ******************************************************************************************************/
 
 class Solution {
-private:
-    int min(int x, int y){
-        return x < y ? x : y;
-    }
-    int min(int x, int y, int z) {
-        return min(min(x, y), z);
-    }
 public:
-    int mincostTickets(vector<int>& days, vector<int>& costs) {
-
-        // Dynamic Programming
-        vector<int> dp(days.size(), INT_MAX);
-
-        // dp[i] is the minimal cost from Days[0] to Days[i]
-        dp[0] = costs[0];
-
-        for (int i = 1; i< days.size(); i ++) {
-
-            // the currnet day need at least 1-day pass cost
-            int OneDayPass = dp[i-1] + costs[0];
-
-            // Seprating the array to two parts.
-            //     days[0] -> days[j] -> day[i]
-            //
-            // calculate the day[i] - day[j] whether can use 7-day pass or 30-day pass
-            //
-            // Traking the minimal costs, then can have dp[i] minimal cost
-
-            int SevenDayPass = INT_MAX, ThrityDayPass = INT_MAX;
-            for (int j=i-1; j>=0; j--){
-                if (days[i] - days[j] < 7 )  {
-                    SevenDayPass  = dp[j-1] + costs[1];
-                } else if (days[i] - days[j] < 30 ) {
-                    ThrityDayPass = dp[j-1] + costs[2];
-                } else {
-                    break;
-                }
-                int m = min(OneDayPass, SevenDayPass, ThrityDayPass);
-                if ( dp[i] > m )  dp[i] = m;
-            }
-
-        }
-
-        return dp[dp.size()-1];
+  int mincostTickets(vector<int>& days, vector<int>& costs) {
+    vector<int> req(days.back() + 1);
+    vector<int> dp(days.back() + 1);
+    for (int day : days) req[day] = 1;
+    dp[0] = 0;
+    for (int i = 1; i < dp.size(); ++i) {
+      if (!req[i]) {
+        dp[i] = dp[i - 1];
+        continue;
+      }
+      dp[i] = dp[i - 1] + costs[0];
+      dp[i] = min(dp[i], dp[max(0, i - 7)] + costs[1]);
+      dp[i] = min(dp[i], dp[max(0, i - 30)] + costs[2]);
     }
+    return dp.back();
+  }
 };
