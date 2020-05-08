@@ -1,6 +1,4 @@
-// Source : https://leetcode.com/problems/interval-list-intersections/
-// Author : Hao Chen
-// Date   : 2019-02-05
+
 
 /***************************************************************************************************** 
  *
@@ -37,15 +35,7 @@
  * 
  ******************************************************************************************************/
 
-/**
- * Definition for an interval.
- * struct Interval {
- *     int start;
- *     int end;
- *     Interval() : start(0), end(0) {}
- *     Interval(int s, int e) : start(s), end(e) {}
- * };
- */
+
 class Solution {
 public:
     vector<vector<int>> intervalIntersection(vector<vector<int>>& A, vector<vector<int>>& B) {
