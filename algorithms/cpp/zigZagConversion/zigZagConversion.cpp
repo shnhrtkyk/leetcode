@@ -1,61 +1,36 @@
-// Source : https://oj.leetcode.com/problems/zigzag-conversion/
-// Author : Hao Chen
-// Date   : 2014-07-17
-
-/********************************************************************************** 
-* 
-* The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: 
-* (you may want to display this pattern in a fixed font for better legibility)
-* 
-* P   A   H   N
-* A P L S I I G
-* Y   I   R
-* 
-* And then read line by line: "PAHNAPLSIIGYIR"
-* 
-* Write the code that will take a string and make this conversion given a number of rows:
-* 
-* string convert(string text, int nRows);
-* 
-* convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
-* 
-*               
-**********************************************************************************/
-
-#include <iostream>
-#include <vector>
-#include <string>
-using namespace std;
-
-string convert(string s, int nRows) {
-    //The cases no need to do anything
-    if (nRows<=1 || nRows>=s.size()) return s;
-     
-    vector<string> r(nRows);
-    int row = 0;
-    int step = 1;
-    for(int i=0; i<s.size(); i ++) {
-        if (row == nRows-1) step = -1;
-        if (row == 0) step = 1;
-        //cout << row <<endl;
-        r[row] += s[i];
-        row += step;
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if (numRows <= 1) return s;
+        string res;
+        int size = 2 * numRows - 2, n = s.size();
+        for (int i = 0; i < numRows; ++i) {
+            for (int j = i; j < n; j += size) {
+                res += s[j];
+                int pos = j + size - 2 * i;
+                if (i != 0 && i != numRows - 1 && pos < n) res += s[pos];
+            }
+        }
+        return res;
     }
-    
-    string result;
-    for (int i=0; i<nRows; i++){
-        result += r[i];
-    }
-    return result;
-}
+};
 
-int main(int argc, char**argv){
-
-    string s;
-    int r;
-
-    s = "PAYPALISHIRING";
-    r = 3;
-    cout << s << " : " << convert(s, 3) << endl;
-
-}
+//class Solution {
+//public:
+//    string convert(string s, int numRows) {
+//        if (numRows <= 1) return s;
+//        string res;
+//        int i = 0, n = s.size();
+//        vector<string> vec(numRows);
+//        while (i < n) {
+//            for (int pos = 0; pos < numRows && i < n; ++pos) {
+//                vec[pos] += s[i++];
+//            }
+//            for (int pos = numRows - 2; pos >= 1 && i < n; --pos) {
+//                vec[pos] += s[i++];
+//            }
+//        }
+//        for (auto &a : vec) res += a;
+//        return res;
+//    }
+//};
