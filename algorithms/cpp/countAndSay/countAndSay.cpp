@@ -1,20 +1,15 @@
 class Solution {
 public:
-    string countAndSay(int n) {
-        if (n <= 0) return "";
-        string res = "1";
-        while (--n) {
-            string cur = "";
-            for (int i = 0; i < res.size(); ++i) {
-                int cnt = 1;
-                while (i + 1 < res.size() && res[i] == res[i + 1]) {
-                    ++cnt;
-                    ++i;
-                }
-                cur += to_string(cnt) + res[i];
+    void rotate(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = i; j < n - 1 - i; ++j) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[n - 1 - j][i];
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
+                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
+                matrix[j][n - 1 - i] = tmp;
             }
-            res = cur;
         }
-        return res;
     }
 };
