@@ -1,108 +1,52 @@
-// Source : https://oj.leetcode.com/problems/max-points-on-a-line/
-// Author : Hao Chen
-// Date   : 2014-10-12
+// class Solution {
+// public:
+//     int maxPoints(vector<vector<int>>& points) {
+//         int res = 0;
+//         for (int i = 0; i < points.size(); ++i) {
+//             map<pair<int, int>, int> m;
+//             int duplicate = 1;
+//             for (int j = i + 1; j < points.size(); ++j) {
+//                 if (points[i][0] == points[j][0] && points[i][1] == points[j][1]) {
+//                     ++duplicate; continue;
+//                 }
+//                 int dx = points[j][0] - points[i][0];
+//                 int dy = points[j][1] - points[i][1];
+//                 int d = gcd(dx, dy);
+//                 ++m[{dx / d, dy / d}];
+//             }
+//             res = max(res, duplicate);
+//             for (auto it = m.begin(); it != m.end(); ++it) {
+//                 res = max(res, it->second + duplicate);
+//             }
+//         }
+//         return res;
+//     }
+//     int gcd(int a, int b) {
+//         return (b == 0) ? a : gcd(b, a % b);
+//     }
+// };
 
-/********************************************************************************** 
-* 
-* Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
-*               
-**********************************************************************************/
-
-#include <stdlib.h>
-#include <time.h>
-#include <iostream>
-#include <vector>
-#include <map>
-using namespace std;
-
-struct Point {
-    int x;
-    int y;
-    Point() : x(0), y(0) {}
-    Point(int a, int b) : x(a), y(b) {}
+class Solution {
+public:
+    int maxPoints(vector<vector<int>>& points) {
+        int res = 0;
+        for (int i = 0; i < points.size(); ++i) {
+            int duplicate = 1;
+            for (int j = i + 1; j < points.size(); ++j) {
+                int cnt = 0;
+                long long x1 = points[i][0], y1 = points[i][1];
+                long long x2 = points[j][0], y2 = points[j][1];
+                if (x1 == x2 && y1 == y2) {++duplicate; continue;}
+                for (int k = 0; k < points.size(); ++k) {
+                    int x3 = points[k][0], y3 = points[k][1];
+                    if (x1 * y2 + x2 * y3 + x3 * y1 - x3 * y2 - x2 * y1 - x1 * y3 == 0) {
+                        ++cnt;
+                    }
+                }
+                res = max(res, cnt);
+            }
+            res = max(res, duplicate);
+        }
+        return res;
+    }
 };
-
-// O(n^2) time complexity solution
-int maxPoints(vector<Point> &points) {
-
-    #define INT_MAX 2147483647
-    #define INT_MIN (-INT_MAX - 1)
-
-    if (points.size()<=0) return 0;
-    if (points.size()<=2) return points.size();
-    
-    int maxnum = 0;
-    //using a map to find the same slope line
-    map<double, int> slopeMap;
-
-    //The algorithm here is quite straight forward.
-    //   take each point in array to caculate with others
-    //
-    //Actually the algorithm here can be optimized.
-    //   there are many duplicated calculation. 
-    //   considering two points A and B, (A,B) is same with (B,A), here re-calculated.
-    for(int i=0; i<points.size(); i++) {
-        //reset teh slope map.
-        slopeMap.clear();
-        slopeMap[INT_MIN] = 0;
-        int samePointCnt = 1;
-        for (int j=0; j<points.size(); j++) {
-            if (i==j) continue; //skip the same point
-            //Caculate the slope of two points
-            int delta_x = points[i].x - points[j].x;
-            int delta_y = points[i].y - points[j].y;
-            //Special case: two points are exactly at same place
-            if (delta_y == 0 && delta_x == 0){
-                samePointCnt++;
-                continue;
-            }
-            //Special case: delta_x == 0
-            double slope = INT_MAX;
-            if (delta_x!=0) {
-                slope = 1.0*delta_y / delta_x;
-            }
-            //Count the points is same line.
-            slopeMap[slope]++;
-        }
-        //find the max number of points located at same line with points[i]
-        map<double, int>::iterator it;
-        for (it = slopeMap.begin(); it != slopeMap.end(); it++) {
-            if (maxnum < it->second + samePointCnt) {
-                maxnum = it->second + samePointCnt;
-            }
-        }
-    }
-
-    return maxnum;
-}
-
-void generatePoints(vector<Point> &points, int n) {
-    srand(time(0));
-    Point p;
-    for(int i=0; i<n; i++) {
-        p.x = rand() % 1;
-        p.y = rand() % 1;
-        points.push_back(p);
-    }
-}
-
-void printPoints(vector<Point> &points) {
-    for(int i=0; i<points.size(); i++) {
-        cout << "(" << points[i].x << "," << points[i].y << ") ";
-    }
-    cout << endl;
-}
-
-
-int main(int argc, char** argv) 
-{
-    int n = 20;
-    if ( argc > 1) {
-        n = atoi(argv[1]);
-    }
-    vector<Point> points;
-    generatePoints(points, n);
-    printPoints(points);
-    cout << maxPoints(points) << endl;
-    return 0;
-}
