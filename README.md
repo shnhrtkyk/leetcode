@@ -93,6 +93,7 @@ LeetCode
 |449|[Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/) | [Python](./algorithms/python/SerializeAndDeserializeBST/serialize.py)|Medium|
 |438|[Find all Anagrams in a string](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | [C++](./algorithms/cpp/findAllAnagramsInAString/Find-All-Anagrams-in-a-String.cpp)|Medium|
 |437|[Path Sum III](https://leetcode.com/problems/path-sum-iii/) | [Python](./algorithms/python/PathSumIII/pathSum.py)|Medium|
+| 432 |[All O`one Data Structure](https://leetcode.com/problems/all-oone-data-structure/) | [C++](./algorithms/cpp/all-oone-data-structure/all-oone-data-structure.cpp)|Medium|
 |420|[Strong Password Checker](https://leetcode.com/problems/strong-password-checker/) | [C++](./algorithms/cpp/strong-password-checker/strong-password-checker.cpp)|Hard|
 |418|[SentenceScreenFitting](https://leetcode.com/problems/sentence-screen-fitting/) &hearts; | [C++](./algorithms/cpp/sentenceScreenFitting/sentenceScreenFitting.cpp)|Easy|
 |416|[Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/description/) | [C++](./algorithms/cpp/partitionEqualSubsetSum/PartitionEqualSubsetSum.cpp)|Medium|
