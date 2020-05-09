@@ -8,6 +8,7 @@ LeetCode
 
 | # | Title | Solution | Difficulty |
 |---| ----- | -------- | ---------- |
+| 1316 |[Distinct Echo Substrings](https://leetcode.com/problems/distinct-echo-substrings/) | [C++](./algorithms/cpp/distinct-echo-substrings/distinct-echo-substrings.cpp)|Hard|
 | 1284 |[Minimum Number of Flips to Convert Binary Matrix to Zero Matrix](https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/) | [C++](./algorithms/cpp/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix.cpp)|Hard|
 |1250|[Check If It Is a Good Array](https://leetcode.com/problems/check-if-it-is-a-good-array/) | [C++](./algorithms/cpp/CheckIfItIsaGoodArray/check-if-it-is-a-good-array.cpp)|Hard|
 |1207|[Unique Number of Occurrences](https://leetcode.com/problems/unique-number-of-occurrences/) | [C++](./algorithms/cpp/uniqueNumberOfOccurrences/Unique-Number-of-Occurrences.cpp)|Easy|
