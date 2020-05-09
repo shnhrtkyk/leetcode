@@ -1,44 +1,23 @@
-// Source : https://oj.leetcode.com/problems/integer-to-roman/
-// Author : Hao Chen
-// Date   : 2014-07-17
-
-/********************************************************************************** 
-* 
-* Given an integer, convert it to a roman numeral.
-* 
-* Input is guaranteed to be within the range from 1 to 3999.
-*               
-**********************************************************************************/
-
-#include <stdlib.h>
-#include <string>
-#include <iostream>
-using namespace std;
-
-//greeding algorithm
-string intToRoman(int num) {
-    string symbol[] =   {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};    
-    int value[]     =   {1000,900,500,400, 100, 90,  50, 40,  10, 9,   5,  4,   1}; 
-    string result;
-
-    for(int i=0; num!=0; i++){
-        while(num >= value[i]){
-            num -= value[i];
-            result+=symbol[i];
+class Solution {
+public:
+    string intToRoman(int num) {
+        string res = "";
+        vector<char> roman{'M', 'D', 'C', 'L', 'X', 'V', 'I'};
+        vector<int> value{1000, 500, 100, 50, 10, 5, 1};
+        for (int n = 0; n < 7; n += 2) {
+            int x = num / value[n];
+            if (x < 4) {
+                for (int i = 1; i <= x; ++i) res += roman[n];
+            } else if (x == 4) {
+                res = res + roman[n] + roman[n - 1];
+            } else if (x > 4 && x < 9) {
+                res += roman[n - 1];
+                for (int i = 6; i <= x; ++i) res += roman[n];
+            } else if (x == 9) {
+                res = res + roman[n] + roman[n - 2];
+            }
+            num %= value[n];
         }
+        return res;
     }
-
-    return result;
-}
-
-
-int main(int argc, char** argv)
-{
-    int num = 1234;
-    if (argc>0){
-        num = atoi(argv[1]);
-    }    
-
-    cout << num << " : " << intToRoman(num) << endl;
-    return 0;
-}
+};
