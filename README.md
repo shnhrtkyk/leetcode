@@ -88,9 +88,13 @@ LeetCode
 |509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) | [C++](./algorithms/cpp/fibonacciNumber/FibonacciNumber.cpp), [Python](./algorithms/python/FibonacciNumber/fib.py)|Easy|
 |477|[Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [C++](./algorithms/cpp/totalHammingDistance/totalHammingDistance.cpp)|Medium|
 |463|[Island Perimeter](https://leetcode.com/problems/island-perimeter/) | [C++](./algorithms/cpp/islandPerimeter/IslandPerimeter.cpp)|Easy|
+| 460 |[ LFU Cache](https://leetcode.com/problems/lfu-cache/) | [C++](./algorithms/cpp/lfu-cache/lfu-cache.cpp)|Hard|
+| 458 |[ Poor Pigs](https://leetcode.com/problems/poor-pigs/) | [C++](./algorithms/cpp/poor-pigs/poor-pigs.cpp)|Hard|
 | 454 |[4Sum II](https://leetcode.com/problems/island-perimeter/) | [C++](./algorithms/cpp/islandPerimeter/IslandPerimeter.cpp)|Easy|
 |450|[DeleteNodeInABST](https://leetcode.com/problems/delete-node-in-a-bst/) | [Python](./algorithms/python/DeleteNodeInABST/deleteNode.py)|Medium|
 |449|[Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/) | [Python](./algorithms/python/SerializeAndDeserializeBST/serialize.py)|Medium|
+|446|[Arithmetic Slices II - Subsequence](https://leetcode.com/problems/arithmetic-slices-ii-subsequence/) | [C++](./algorithms/cpp/arithmetic-slices-ii-subsequence/arithmetic-slices-ii-subsequence.cpp)| Hard |
+|440|[ K-th Smallest in Lexicographical Order](https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/) | [C++](./algorithms/cpp/k-th-smallest-in-lexicographical-order/k-th-smallest-in-lexicographical-order.cpp)|Hard|
 |438|[Find all Anagrams in a string](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | [C++](./algorithms/cpp/findAllAnagramsInAString/Find-All-Anagrams-in-a-String.cpp)|Medium|
 |437|[Path Sum III](https://leetcode.com/problems/path-sum-iii/) | [Python](./algorithms/python/PathSumIII/pathSum.py)|Medium|
 | 432 |[All O`one Data Structure](https://leetcode.com/problems/all-oone-data-structure/) | [C++](./algorithms/cpp/all-oone-data-structure/all-oone-data-structure.cpp)|Medium|
