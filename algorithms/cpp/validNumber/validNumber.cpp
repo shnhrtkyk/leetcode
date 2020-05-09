@@ -1,118 +1,60 @@
-// Source : https://oj.leetcode.com/problems/valid-number/
-// Author : Hao Chen
-// Date   : 2014-08-26
-
-/********************************************************************************** 
-* 
-* Validate if a given string is numeric.
-* 
-* Some examples:
-* "0" => true
-* "   0.1  " => true
-* "abc" => false
-* "1 a" => false
-* "2e10" => true
-* 
-* Note: It is intended for the problem statement to be ambiguous. 
-*       You should gather all requirements up front before implementing one.
-* 
-*               
-**********************************************************************************/
-
-#include <iostream>
-using namespace std;
-
-
-bool isdigit(const char c){
-    return (c>='0' && c<='9');
-}
-bool isspace(const char c) {
-    return (c==' ' || c =='\t' || c=='\n' || c=='\r' || c=='\f' || c=='\v');
-}
-
-bool isNumber(const char *s) {
-    bool point = false;
-    bool hasE = false;
-    
-    //trim the space
-    while(isspace(*s)) s++;
-    //check empty 
-    if (*s == '\0' ) return false;
-    //check sign
-    if (*s=='+' || *s=='-') s++;
-
-    const char *head  = s;
-    for(; *s!='\0'; s++){
-        // if meet point
-        if ( *s == '.' ){
-            if ( hasE == true || point == true){
-                return false;
+class Solution {
+public:
+    bool isnum(string s,int start,int end)    //
+    {
+        if(start>end)return false;
+        int i=start;
+        int countdot=0;
+        while(i<=end)
+        {
+            if((s[i]=='-'||s[i]=='+')&&i==start)
+            {
+                if((end-start==1)&&s[i+1]>='0'&&s[i+1]<='9')i++;
+                else if(end-start>1)i++;
+                else return false;
             }
-            if ( s == head && !isdigit(*(s+1))  ){
-                return false;
+            else if(s[i]>='0'&&s[i]<='9')i++;
+            else if(s[i]=='.'&&(end-start)>0)
+            {
+                countdot++;
+                if(countdot>1)return false;
+                i++;
             }
-            point = true; 
-            continue; 
+            else return false;
         }
-        //if meet "e"
-        if ( *s == 'e' ){
-            if ( hasE == true || s == head) {
-                return false;
-            }
-            s++;
-            if ( *s=='+' || *s=='-' )  s++;
-            if ( !isdigit(*s) ) return false;
-      
-            hasE = true; 
-            continue; 
-        }
-        //if meet space, check the rest chars are space or not
-        if (isspace(*s)){
-            for (; *s != '\0'; s++){
-                if (!isspace(*s)) return false;
-            }
-            return true;
-        }
-        if ( !isdigit(*s) ) {
-            return false;
-        }
-       
+        if(start>0&&countdot>0)return false;     //
+        return true;
     }
     
-    return true; 
-}
-
-
-#define TEST(s) cout << "\"" << s << "\"" << " : " << isNumber(s) << endl
-int main(int argc, char** argv)
-{
-    const char* s="123";
-    if(argc>1){
-        s = argv[1];
+    bool isNumber(string s) {
+        for(auto it=s.begin();it!=s.end();)
+        {
+            if(*it==' ')
+            {
+                s.erase(it);
+                continue;
+            }
+            else break;
+            ++it;
+        }
+        for(auto it=--s.end();it!=s.begin();--it)
+        {
+            if(*it==' ')
+            {
+                s.erase(it);
+                continue;
+            }
+            else break;
+        }
+        if(s.empty())return false;
+        int n=s.size();
+        for(int i=0;i<n;i++)
+        {
+            if(s[i]=='e')
+                return isnum(s,0,i-1)&&isnum(s,i+1,n-1);
+            else if(s[i]=='.'||(s[i]>='0'&&s[i]<='9')||(s[i]=='-'||s[i]=='+'))continue;
+            else return false;
+        }
+        return isnum(s,0,n-1);
     }
-    TEST(s);
-
-    TEST("1.044");
-    TEST(" 1.044 ");
-    TEST("1.a");
-    TEST("abc");
-    TEST("e");
-    TEST("1e");
-    TEST("1e2");
-    TEST("");
-    TEST(" ");
-    TEST("1.");
-    TEST(".2");
-    TEST(" . ");
-    TEST(".");
-    TEST("1.2.3");
-    TEST("1e2e3");
-    TEST("1..");
-    TEST("+1.");
-    TEST(" -1.");
-    TEST("6e6.5");
-    TEST("005047e+6");
-    
-
-    return 0;
-}
+};
