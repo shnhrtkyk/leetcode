@@ -1,112 +1,75 @@
-// Source : https://oj.leetcode.com/problems/permutations/
-// Author : Hao Chen
-// Date   : 2014-06-21
-
-/********************************************************************************** 
-* 
-* Given a collection of numbers, return all possible permutations.
-* 
-* For example,
-* [1,2,3] have the following permutations:
-* [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
-* 
-*               
-**********************************************************************************/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <vector>
-using namespace std;
-
-/*
-{ 1 2 3 }
-{ 2 1 3 }
-{ 3 2 1 }
-{ 1 3 2 }
-{ 2 3 1 }
-{ 3 1 2 }
-*/
-
-/*
- *    The algroithm - Take each element in array to the first place.
- *
- *    For example: 
- *    
- *         0) initalization 
- * 
- *             pos = 0
- *             [1, 2, 3]   
- *
- *         1) take each element into the first place, 
- *
- *             pos = 1
- *             [1, 2, 3]  ==>  [2, 1, 3] , [3, 1, 2] 
- *
- *             then we have total 3 answers
- *             [1, 2, 3],  [2, 1, 3] , [3, 1, 2] 
- *            
- *         2) take each element into the "first place" -- pos 
- *
- *             pos = 2
- *             [1, 2, 3]  ==>  [1, 3, 2]
- *             [2, 1, 3]  ==>  [2, 3, 1]
- *             [3, 1, 2]  ==>  [3, 2, 1] 
- *
- *             then we have total 6 answers
- *             [1, 2, 3],  [2, 1, 3] , [3, 1, 2], [1, 3, 2], [2, 3, 1], [3, 2, 1]
- *
- *          3) pos = 3 which greater than length of array, return.
- *
- */
-vector<vector<int> > permute(vector<int> &num) {
-    
-    vector<vector<int> > vv;
-    vv.push_back(num);
-
-    if (num.size() <2){
-        return vv;
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& num) {
+        vector<vector<int>> res;
+        vector<int> out, visited(num.size(), 0);
+        permuteDFS(num, 0, visited, out, res);
+        return res;
     }
-        
-    int pos=0;
-    while(pos<num.size()-1){
-        int size = vv.size();
-        for(int i=0; i<size; i++){
-            //take each number to the first place
-            for (int j=pos+1; j<vv[i].size(); j++) {
-                vector<int> v = vv[i];
-                int t = v[j]; 
-                v[j] = v[pos];
-                v[pos] = t;
-                vv.push_back(v);
-            }
+    void permuteDFS(vector<int>& num, int level, vector<int>& visited, vector<int>& out, vector<vector<int>>& res) {
+        if (level == num.size()) {res.push_back(out); return;}
+        for (int i = 0; i < num.size(); ++i) {
+            if (visited[i] == 1) continue;
+            visited[i] = 1;
+            out.push_back(num[i]);
+            permuteDFS(num, level + 1, visited, out, res);
+            out.pop_back();
+            visited[i] = 0;
         }
-        pos++;
     }
-    return vv;
-}
+};
 
-int main(int argc, char** argv)
-{
-    int n = 3;
-    if (argc>1){
-       n = atoi(argv[1]); 
-    }
+// class Solution {
+// public:
+//     vector<vector<int>> permute(vector<int>& num) {
+//         vector<vector<int>> res;
+//         permuteDFS(num, 0, res);
+//         return res;
+//     }
+//     void permuteDFS(vector<int>& num, int start, vector<vector<int>>& res) {
+//         if (start >= num.size()) res.push_back(num);
+//         for (int i = start; i < num.size(); ++i) {
+//             swap(num[start], num[i]);
+//             permuteDFS(num, start + 1, res);
+//             swap(num[start], num[i]);
+//         }
+//     }
+// };
 
-    vector<int> v;
-    for (int i=0; i<n; i++) {
-        v.push_back(i+1);
-    }
-    vector<vector<int> > vv;
-    vv = permute(v);
-    
-    for(int i=0; i<vv.size(); i++) {
-        cout << "{ ";
-        for(int j=0; j<vv[i].size(); j++){
-            cout << vv[i][j] << " ";
-        }
-        cout << "}" <<endl;
-    }
+// class Solution {
+// public:
+//     vector<vector<int>> permute(vector<int>& num) {
+//         if (num.empty()) return vector<vector<int>>(1, vector<int>());
+//         vector<vector<int>> res;
+//         int first = num[0];
+//         num.erase(num.begin());
+//         vector<vector<int>> words = permute(num);
+//         for (auto &a : words) {
+//             for (int i = 0; i <= a.size(); ++i) {
+//                 a.insert(a.begin() + i, first);
+//                 res.push_back(a);
+//                 a.erase(a.begin() + i);
+//             }
+//         }
+//         return res;
+//     }
+// };
 
-    return 0;
-}
+// class Solution {
+// public:
+//     vector<vector<int>> permute(vector<int>& num) {
+//         vector<vector<int>> res{{}};
+//         for (int a : num) {
+//             for (int k = res.size(); k > 0; --k) {
+//                 vector<int> t = res.front();
+//                 res.erase(res.begin());
+//                 for (int i = 0; i <= t.size(); ++i) {
+//                     vector<int> one = t;
+//                     one.insert(one.begin() + i, a);
+//                     res.push_back(one);
+//                 }
+//             }
+//         }
+//         return res;
+//     }
+// };
