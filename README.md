@@ -133,6 +133,7 @@ LeetCode
 |371|[Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/description/) | [C++](./algorithms/cpp/sumOfTwoIntegers/SumOfTwoIntegers.cpp)|Easy|
 |367|[Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/description/) | [C++](./algorithms/cpp/validPerfectSquare/ValidPerfectSquare.cpp)|Easy|
 |357|[Count Numbers with Unique Digits](https://leetcode.com/problems/count-numbers-with-unique-digits/) | [C++](./algorithms/cpp/countNumbersWithUniqueDigits/CountNumbersWithUniqueDigits.cpp)|Medium|
+|354|[Russian Doll Envelopes](https://leetcode.com/problems/russian-doll-envelopes/) | [C++](./algorithms/cpp/russian-doll-envelopes/russian-doll-envelopes.cpp)| Hard |
 |352|[Data Stream as Disjoint Intervals](https://leetcode.com/problems/data-stream-as-disjoint-intervals/) | [C++](./algorithms/cpp/intersectionOfTwoArrays/intersectionOfTwoArraysII.cpp)| Hard |
 |350|[Intersection of Two Arrays II](https://leetcode.com/problems/intersection-of-two-arrays-ii/) | [C++](./algorithms/cpp/intersectionOfTwoArrays/intersectionOfTwoArraysII.cpp)|Easy|
 |349|[Intersection of Two Arrays](https://leetcode.com/problems/intersection-of-two-arrays/) | [C++](./algorithms/cpp/intersectionOfTwoArrays/intersectionOfTwoArrays.cpp)|Easy|
