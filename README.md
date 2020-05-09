@@ -87,6 +87,7 @@ LeetCode
 |518|[Coin Change 2](https://leetcode.com/problems/4sum-ii/) | [C++](./algorithms/cpp/4sum-ii/4sum-ii.cpp)|Medium|
 |509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) | [C++](./algorithms/cpp/fibonacciNumber/FibonacciNumber.cpp), [Python](./algorithms/python/FibonacciNumber/fib.py)|Easy|
 |477|[Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [C++](./algorithms/cpp/totalHammingDistance/totalHammingDistance.cpp)|Medium|
+|466|[Count The Repetitions](https://leetcode.com/problems/count-the-repetitions/) | [C++](./algorithms/cpp/count-the-repetitions/count-the-repetitions.cpp)|Hard|
 |463|[Island Perimeter](https://leetcode.com/problems/island-perimeter/) | [C++](./algorithms/cpp/islandPerimeter/IslandPerimeter.cpp)|Easy|
 | 460 |[ LFU Cache](https://leetcode.com/problems/lfu-cache/) | [C++](./algorithms/cpp/lfu-cache/lfu-cache.cpp)|Hard|
 | 458 |[ Poor Pigs](https://leetcode.com/problems/poor-pigs/) | [C++](./algorithms/cpp/poor-pigs/poor-pigs.cpp)|Hard|
