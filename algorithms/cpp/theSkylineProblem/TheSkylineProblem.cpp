@@ -1,7 +1,3 @@
-// Source : https://leetcode.com/problems/the-skyline-problem/
-// Author : Hao Chen
-// Date   : 2015-06-11
-
 /********************************************************************************** 
  * 
  * A city's skyline is the outer contour of the silhouette formed by all the buildings 
@@ -89,52 +85,62 @@
  * it takes O(1) time to query the maximum height but O(logN) time to add 
  * or remove elements. Overall, this solution takes O(NlogN) time.
  */
-class Solution {
+class Solution
+{
 public:
+    vector<vector<int>> getSkyline(vector<vector<int>> &buildings)
+    {
+        if (buildings.empty())
+            return buildings;
+        return cal(buildings, 0, buildings.size() - 1);
+    }
 
-    vector<pair<int, int>> getSkyline(vector<vector<int>>& buildings) {
-        vector< pair<int, int> > edges;
-        
-        //put all of edge into a vector
-        //set left edge as negtive, right edge as positive
-        //so, when we sort the edges, 
-        //  1) for same left point, the height would be descending order
-        //  2) for same right point, the height would be ascending order
-        int left, right, height;
-        for(int i=0; i<buildings.size(); i++) {
-            left   = buildings[i][0];
-            right  = buildings[i][1];
-            height = buildings[i][2];
-            edges.push_back(make_pair(left, -height));
-            edges.push_back(make_pair(right, height));
-        }
-        sort(edges.begin(), edges.end());
-
-        // 1) if we meet a left edge, then we add its height into a `set`.
-        //    the `set` whould sort the height automatically.
-        // 2) if we meet a right edge, then we remove its height from the `set`
-        //
-        // So, we could get the current highest height from the `set`, if the 
-        // current height is different with preivous height, then we need add
-        // it into the result.
-        vector< pair<int, int> > result;
-        multiset<int> m;
-        m.insert(0);
-        int pre = 0, cur = 0;
-        for (int i=0; i<edges.size(); i++){
-            pair<int,int> &e = edges[i];
-            if (e.second < 0) {
-                m.insert(-e.second);
-            }else{
-                m.erase(m.find(e.second));
+private:
+    vector<vector<int>> cal(vector<vector<int>> &buildings, int start, int end)
+    {
+        vector<vector<int>> res;
+        if (end - start > 0)
+        {
+            int mid = (start + end) / 2;
+            auto left = cal(buildings, start, mid);
+            auto right = cal(buildings, mid + 1, end);
+            int i = 0, j = 0, m = left.size(), n = right.size(), lh = 0, rh = 0;
+            while (i < m && j < n)
+            {
+                if (left[i][0] < right[j][0])
+                {
+                    lh = left[i][1];
+                    if (res.empty() || res.back()[1] != max(lh, rh))
+                        res.emplace_back(vector<int>{left[i][0], max(lh, rh)});
+                    i++;
+                }
+                else if (left[i][0] > right[j][0])
+                {
+                    rh = right[j][1];
+                    if (res.empty() || res.back()[1] != max(lh, rh))
+                        res.emplace_back(vector<int>{right[j][0], max(lh, rh)});
+                    j++;
+                }
+                else
+                {
+                    lh = left[i][1];
+                    rh = right[j][1];
+                    if (res.empty() || res.back()[1] != max(lh, rh))
+                        res.emplace_back(vector<int>{right[j][0], max(lh, rh)});
+                    i++;
+                    j++;
+                }
             }
-            cur = *m.rbegin();
-            if (cur != pre) {
-                result.push_back(make_pair(e.first, cur));
-                pre = cur;
-            }
+            while (i < m)
+                res.emplace_back(left[i++]);
+            while (j < n)
+                res.emplace_back(right[j++]);
         }
-        return result;
-
+        else
+        {
+            res.emplace_back(vector<int>{buildings[start][0], buildings[start][2]});
+            res.emplace_back(vector<int>{buildings[start][1], 0});
+        }
+        return res;
     }
 };
