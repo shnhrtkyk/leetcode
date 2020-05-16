@@ -46,6 +46,7 @@ LeetCode
 |922|[Sort Array By Parity II](https://leetcode.com/problems/sort-array-by-parity-ii/) | [C++](./algorithms/cpp/sortArrayByParity/SortArrayByParity.II.cpp)|Easy|
 |914|[X of a Kind in a Deck of Cards](https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/) | [C++](./algorithms/cpp/XOfAKindInADeckOfCards/hasGroupsSizeX.II.cpp), [Python](./algorithms/python/XOfAKindInADeckOfCards/hasGroupsSizeX.py)|Easy|
 |905|[Sort Array By Parity](https://leetcode.com/problems/sort-array-by-parity/) | [C++](./algorithms/cpp/sortArrayByParity/SortArrayByParity.cpp)|Easy|
+|880|[ Decoded String at Index](https://leetcode.com/problems/decoded-string-at-index/) | [C++](./algorithms/cpp/decoded-string-at-index/decoded-string-at-index.cpp)|Easy|
 |876|[Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/) |  [C++](./algorithms/cpp/MiddleOfTheLinkedList/middleOfTheLinkedList.cpp), [Python](./algorithms/python/MiddleOfTheLinkedList/middleOfTheLinkedList.py)|Easy|
 |859|[Buddy Strings](https://leetcode.com/problems/buddy-strings/description/) | [C++](./algorithms/cpp/buddyStrings/BuddyStrings.cpp)|Easy|
 |858|[Mirror Reflection](https://leetcode.com/problems/mirror-reflection/description/) | [C++](./algorithms/cpp/mirrorReflection/MirrorReflection.cpp)|Medium|
