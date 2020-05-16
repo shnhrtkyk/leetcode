@@ -56,6 +56,7 @@ LeetCode
 |804|[Unique Morse Code Words](https://leetcode.com/problems/unique-morse-code-words/description/) | [C++](./algorithms/cpp/uniqueMorseCodeWords/UniqueMorseCodeWords.cpp)|Easy|
 | 782 |[Transform to Chessboard](https://leetcode.com/problems/transform-to-chessboard/) | [C++](./algorithms/cpp/transform-to-chessboard/transform-to-chessboard.cpp)| Hard |
 |771|[Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/description) | [C++](./algorithms/cpp/jewelsAndStones/JewelsAndStones.cpp)|Easy|
+|770|[770. Basic Calculator IV](https://leetcode.com/problems/basic-calculator-iv/) | [C++](./algorithms/cpp/Basic-Calculator-IV/Basic-Calculator-IV.cpp)|Easy|
 |747|[Largest Number At Least Twice of Others](https://leetcode.com/problems/largest-number-at-least-twice-of-others/) |  [C++](./algorithms/cpp/LargestNumberAtLeastTwiceOfOthers/dominantIndex.cpp),  [Python](./algorithms/python/LargestNumberAtLeastTwiceOfOthers/dominantIndex.py)|Easy|
 |746|[Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) | [C++](./algorithms/cpp/minCostClimbingStairs/MinCostClimbingStairs.cpp), [Python](./algorithms/python/MinCostClimbingStairs/minCostClimbingStairs.py)|Easy|
 |721|[Accounts Merge](https://leetcode.com/problems/accounts-merge/) | [C++](./algorithms/cpp/accountsMerge/AccountsMerge.cpp)|Medium|
