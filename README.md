@@ -64,6 +64,7 @@ LeetCode
 |717|[1-bit and 2-bit Characters](https://leetcode.com/problems/1-bit-and-2-bit-characters/) |[C++](./algorithms/cpp/bitCharacters/isOneBitCharacter.cpp),  [Python](./algorithms/python/1-bitAnd2-bitCharacters/isOneBitCharacter.py)|Easy|
 |714|[Best Time to Buy and Sell Stock with Transaction Fee](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee) | [C++](./algorithms/cpp/bestTimeToBuyAndSellStock/BestTimeToBuyAndSellStockWithTransactionFee.cpp)|Medium|
 |712|[Minimum ASCII Delete Sum for Two Strings](https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/) | [C++](./algorithms/cpp/minimumASCIIDeleteSumForTwoStrings/MinimumAsciiDeleteSumForTwoStrings.cpp)|Medium|
+|707|[Design Linked List](https://leetcode.com/problems/design-linked-list/) | [C++](./algorithms/cpp/design-linked-list/design-linked-list.cpp)|Medium|
 |695|[Max Area of Island](https://leetcode.com/problems/max-area-of-island/) | [C++](./algorithms/cpp/maxAreaOfIsland/MaxAreaOfIsland.cpp)|Medium|
 |687|[Longest Univalue Path](https://leetcode.com/problems/longest-univalue-path/) | [C++](./algorithms/cpp/LongestUnivaluePath/longestUnivaluePath.cpp), [Python](./algorithms/python/LongestUnivaluePath/longestUnivaluePath.py)|Easy|
 |684|[Redundant Connection](https://leetcode.com/problems/redundant-connection/) | [Python](./algorithms/python/RedundantConnection/findRedundantConnection.py)|Medium|
@@ -88,8 +89,8 @@ LeetCode
 |520|[Detect Capital](https://leetcode.com/problems/detect-capital/) | [C++](./algorithms/cpp/detectCapital/DetectCapital.cpp)|Easy|
 |518|[Coin Change 2](https://leetcode.com/problems/4sum-ii/) | [C++](./algorithms/cpp/4sum-ii/4sum-ii.cpp)|Medium|
 |509|[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) | [C++](./algorithms/cpp/fibonacciNumber/FibonacciNumber.cpp), [Python](./algorithms/python/FibonacciNumber/fib.py)|Easy|
-|468|[Validate IP Address](https://leetcode.com/problems/validate-ip-address/) | [C++](./algorithms/cpp/validate-ip-address/validate-ip-address.cpp)|Hard|
 |477|[Total Hamming Distance](https://leetcode.com/problems/total-hamming-distance/) | [C++](./algorithms/cpp/totalHammingDistance/totalHammingDistance.cpp)|Medium|
+|468|[Validate IP Address](https://leetcode.com/problems/validate-ip-address/) | [C++](./algorithms/cpp/validate-ip-address/validate-ip-address.cpp)|Hard|
 |466|[Count The Repetitions](https://leetcode.com/problems/count-the-repetitions/) | [C++](./algorithms/cpp/count-the-repetitions/count-the-repetitions.cpp)|Hard|
 |463|[Island Perimeter](https://leetcode.com/problems/island-perimeter/) | [C++](./algorithms/cpp/islandPerimeter/IslandPerimeter.cpp)|Easy|
 | 460 |[ LFU Cache](https://leetcode.com/problems/lfu-cache/) | [C++](./algorithms/cpp/lfu-cache/lfu-cache.cpp)|Hard|
